@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finanzas 101 · De Bogotá a Budapest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root {
+  --ink: #1a1611;
+  --paper: #f4ebd9;
+  --paper-deep: #ebdfc6;
+  --paper-soft: #faf3e3;
+  --rule: #d4c5a3;
+  --accent: #b54e2c;
+  --accent-soft: #d97757;
+  --gold: #a67c2d;
+  --green: #4a6b3a;
+  --muted: #6b5d47;
+  --shadow: 0 1px 0 rgba(26,22,17,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 17px;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(181, 78, 44, 0.04), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(166, 124, 45, 0.05), transparent 40%);
+  min-height: 100vh;
+}
+
+/* ====== HEADER ====== */
+header.masthead {
+  border-bottom: 2px solid var(--ink);
+  padding: 32px 48px 24px;
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(244, 235, 217, 0.92);
+}
+
+.masthead-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 32px;
+}
+
+.brand {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  font-style: italic;
+}
+
+.brand .amp { color: var(--accent); font-style: normal; font-weight: 400; }
+
+.dateline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+nav.toc {
+  display: flex;
+  gap: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+nav.toc a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 2px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+nav.toc a:hover {
+  background: var(--paper-deep);
+  border-color: var(--rule);
+}
+
+nav.toc a .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  margin-right: 6px;
+  font-weight: 700;
+}
+
+/* ====== HERO ====== */
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 48px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.hero h1 .underline {
+  border-bottom: 3px solid var(--gold);
+  padding-bottom: 4px;
+}
+
+.hero-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-meta .row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.hero-meta .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink);
+  min-width: 80px;
+}
+
+.hero-lead {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 300;
+  border-left: 3px solid var(--accent);
+  padding-left: 24px;
+  font-style: italic;
+}
+
+/* ====== SECTIONS ====== */
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+  align-items: start;
+}
+
+.section-num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+
+.section-num .ord {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  display: block;
+  color: var(--muted);
+  font-style: normal;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.en-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper-deep);
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-weight: 400;
+}
+
+/* ====== CONTENT ====== */
+.content-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 40px;
+}
+
+.content-grid > .body { max-width: 760px; }
+
+.body p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.body p.lead {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.55;
+  margin-bottom: 32px;
+  color: var(--ink);
+}
+
+.body h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 24px;
+  margin-top: 40px;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.body h3::before {
+  content: '§ ';
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.body strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.body em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.body ul {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.body ul li {
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 12px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.body ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ====== PULL QUOTE ====== */
+.pull-quote {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.35;
+  color: var(--ink);
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 32px 0;
+  margin: 48px 0;
+  position: relative;
+}
+
+.pull-quote::before {
+  content: '"';
+  font-size: 100px;
+  font-family: 'Fraunces', serif;
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  color: var(--accent);
+  font-style: normal;
+  line-height: 1;
+  opacity: 0.2;
+}
+
+.pull-quote .attribution {
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 16px;
+  display: block;
+}
+
+/* ====== CALLOUT BOX ====== */
+.callout {
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  padding: 28px 32px;
+  margin: 32px 0;
+  position: relative;
+}
+
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.callout p { font-size: 16px; margin-bottom: 12px; }
+.callout p:last-child { margin-bottom: 0; }
+
+/* ====== INTERACTIVE: COMPOUND CALCULATOR ====== */
+.calculator {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 48px;
+  margin: 48px 0;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--gold), var(--green));
+}
+
+.calc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(244, 235, 217, 0.2);
+}
+
+.calc-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.calc-title em { color: var(--accent-soft); font-style: italic; }
+
+.calc-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  padding: 4px 10px;
+  border: 1px solid var(--accent-soft);
+  border-radius: 2px;
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.input-group label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--paper-deep);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.input-group label .en {
+  color: var(--accent-soft);
+  opacity: 0.7;
+  margin-left: 8px;
+}
+
+.input-group .input-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.input-group input[type="range"] {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: rgba(244, 235, 217, 0.2);
+  border-radius: 1px;
+  outline: none;
+}
+
+.input-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid var(--paper);
+  box-shadow: 0 0 0 2px var(--accent);
+  transition: transform 0.15s;
+}
+
+.input-group input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.input-group input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid var(--paper);
+}
+
+.input-value {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 32px;
+  color: var(--paper);
+  letter-spacing: -0.02em;
+  min-width: 140px;
+  text-align: right;
+}
+
+.input-value .unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent-soft);
+  margin-left: 4px;
+  letter-spacing: 0.1em;
+}
+
+.calc-results {
+  background: rgba(244, 235, 217, 0.05);
+  padding: 32px;
+  border: 1px solid rgba(244, 235, 217, 0.15);
+  border-radius: 2px;
+}
+
+.result-main {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--paper);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.result-main .currency {
+  color: var(--accent-soft);
+  font-size: 32px;
+  vertical-align: top;
+}
+
+.result-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--paper-deep);
+  margin-bottom: 32px;
+}
+
+.result-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(244, 235, 217, 0.15);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.result-row .key { color: var(--paper-deep); }
+.result-row .val {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+.result-row.gain .val { color: var(--accent-soft); }
+.result-row.gain .key::before { content: '+ '; color: var(--accent-soft); }
+
+.calc-chart {
+  margin-top: 32px;
+  height: 200px;
+  position: relative;
+}
+
+/* ====== INTERACTIVE: CDT vs ETF ====== */
+.comparator {
+  background: var(--paper-soft);
+  border: 1px solid var(--ink);
+  padding: 48px;
+  margin: 48px 0;
+  position: relative;
+}
+
+.comp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.comp-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.comp-title em { color: var(--accent); font-style: italic; }
+
+.versus {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 32px;
+}
+
+.vs-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 28px;
+  position: relative;
+}
+
+.vs-card.left { border-top: 4px solid var(--gold); }
+.vs-card.right { border-top: 4px solid var(--green); }
+
+.vs-card-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.vs-card.left .vs-card-header { color: var(--gold); }
+.vs-card.right .vs-card-header { color: var(--green); }
+
+.vs-card-name {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.vs-card-currency {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  letter-spacing: 0.1em;
+}
+
+.vs-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule);
+  font-size: 14px;
+}
+
+.vs-stat:last-child { border-bottom: none; }
+
+.vs-stat .k {
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.vs-stat .v {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.vs-stat .v.bad { color: var(--accent); }
+.vs-stat .v.good { color: var(--green); }
+
+.vs-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--accent);
+}
+
+.comp-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  margin-bottom: 32px;
+}
+
+.comp-control label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.comp-control .val-display {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.comp-control input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: var(--rule);
+}
+
+.comp-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--ink);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.comp-result {
+  height: 280px;
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 20px;
+}
+
+.comp-verdict {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.comp-verdict strong { color: var(--accent-soft); font-weight: 600; }
+
+/* ====== INTERACTIVE: ACC vs DIST ====== */
+.acc-dist {
+  background: var(--paper-soft);
+  border: 1px solid var(--ink);
+  padding: 48px;
+  margin: 48px 0;
+}
+
+.ad-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border: 1px solid var(--ink);
+  width: fit-content;
+}
+
+.ad-toggle button {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+
+.ad-toggle button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ad-chart {
+  height: 320px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.ad-explanation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.ad-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.ad-card .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.ad-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ====== TABLE ====== */
+.indicator-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 32px 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.indicator-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.indicator-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 14px;
+  vertical-align: top;
+}
+
+.indicator-table td:first-child {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 16px;
+  width: 25%;
+}
+
+.indicator-table td .en-small {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  display: block;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+.indicator-table tr:hover { background: var(--paper-soft); }
+
+/* ====== CHECKLIST ====== */
+.checklist {
+  background: var(--paper-soft);
+  border: 1px solid var(--ink);
+  padding: 40px;
+  margin: 32px 0;
+}
+
+.checklist-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.check-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px dashed var(--rule);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.check-item:last-child { border-bottom: none; }
+
+.check-item.checked { opacity: 0.4; }
+.check-item.checked .check-text { text-decoration: line-through; }
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  background: var(--paper);
+  transition: background 0.2s;
+}
+
+.check-item.checked .check-box {
+  background: var(--ink);
+}
+
+.check-item.checked .check-box::after {
+  content: '✓';
+  color: var(--paper);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.check-content {
+  flex: 1;
+}
+
+.check-text {
+  font-family: 'Fraunces', serif;
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.check-detail {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.check-detail .en-inline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 60px 48px;
+  text-align: center;
+}
+
+footer .colophon {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+footer .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-deep);
+  opacity: 0.7;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 980px) {
+  header.masthead { padding: 20px 24px; }
+  .masthead-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  nav.toc { font-size: 12px; }
+  .hero { grid-template-columns: 1fr; padding: 48px 24px; gap: 32px; }
+  .section { padding: 48px 24px; }
+  .section-head { grid-template-columns: 1fr; gap: 16px; }
+  .section-num { font-size: 60px; }
+  .content-grid { grid-template-columns: 1fr; }
+  .calc-grid { grid-template-columns: 1fr; gap: 32px; }
+  .calculator, .comparator, .acc-dist { padding: 28px 24px; }
+  .versus { grid-template-columns: 1fr; }
+  .vs-divider { transform: rotate(90deg); padding: 8px; }
+  .comp-controls { grid-template-columns: 1fr; }
+  .ad-explanation { grid-template-columns: 1fr; }
+  .result-main { font-size: 40px; }
+  .result-main .currency { font-size: 24px; }
+  .indicator-table { font-size: 13px; }
+  .indicator-table th, .indicator-table td { padding: 10px 8px; }
+}
+
+/* ====== MICRO-ANIMATIONS ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section { animation: fadeIn 0.6s ease-out; }
+
+.flourish {
+  display: inline-block;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--gold);
+  margin: 0 4px;
+}
+</style>
+</head>
+<body>
+
+<!-- ====== MASTHEAD ====== -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <div class="brand">Finanzas <span class="amp">&amp;</span> Sentido <em>Común</em></div>
+      <div class="dateline">Vol. I — Número 01 — Para Lau* (*es decir, mi hermano)</div>
+    </div>
+    <nav class="toc">
+      <a href="#s1"><span class="num">01</span>Diagnóstico</a>
+      <a href="#s2"><span class="num">02</span>Compuesto</a>
+      <a href="#s3"><span class="num">03</span>Renta Fija/Variable</a>
+      <a href="#s4"><span class="num">04</span>Acciones &amp; ETFs</a>
+      <a href="#s5"><span class="num">05</span>Tipos de ETF</a>
+      <a href="#s6"><span class="num">06</span>Budapest</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Una clase casera · 70 minutos</div>
+    <h1>Cómo <em>empezar</em><br>desde <span class="underline">cero</span>,<br>viviendo<br>en Budapest.</h1>
+  </div>
+  <div>
+    <p class="hero-lead">
+      Esto no es asesoría financiera. Es un mapa. Las decisiones, como siempre, son tuyas — pero al menos ahora sabrás qué preguntas hacerte antes de tomarlas.
+    </p>
+    <div class="hero-meta" style="margin-top: 32px;">
+      <div class="row"><span class="label">Tema</span><span>Finanzas personales para principiantes</span></div>
+      <div class="row"><span class="label">Duración</span><span>~70 minutos · 6 módulos</span></div>
+      <div class="row"><span class="label">Idioma</span><span>Español, con notas en inglés <span class="en-tag">EN</span></span></div>
+      <div class="row"><span class="label">Contexto</span><span>Ingresos en HUF + COP · Residencia HU</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 1 ====== -->
+<section class="section" id="s1">
+  <div class="section-head">
+    <div class="section-num">
+      <span class="ord">Módulo Uno</span>
+      I
+    </div>
+    <div>
+      <h2 class="section-title">Diagnóstico inicial<br>y construcción del colchón.</h2>
+      <p class="section-subtitle">Antes de invertir, hay que saber dónde está uno parado. <span class="en-tag">Financial baseline &amp; emergency fund</span></p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <p class="lead">No se puede planear el futuro sin entender el presente. Antes de pensar en ETFs o en bolsa, vale la pena dedicar treinta minutos a tres preguntas básicas.</p>
+
+      <h3>Las tres preguntas</h3>
+      <ul>
+        <li><strong>¿Cuánto entra cada mes?</strong> Tu salario en florines (HUF) más la fracción de la renta familiar en COP. Anótalo en euros equivalentes para tener una sola unidad mental.</li>
+        <li><strong>¿Cuánto sale?</strong> Separa lo fijo (arriendo, servicios, transporte, seguros) de lo variable (comida, ocio, viajes). El número que importa es el promedio mensual de los últimos 3–6 meses, no un mes idealizado.</li>
+        <li><strong>¿Cuánto cuesta tu vida un mes?</strong> Esa cifra es la base para todo lo demás.</li>
+      </ul>
+
+      <div class="callout">
+        <div class="callout-label">El colchón / The Emergency Fund</div>
+        <p>La regla estándar es <strong>3 a 6 meses de gastos</strong> guardados en algo líquido y estable (cuenta de ahorro, no inversión). Para alguien viviendo fuera de su país de origen, recomiendo apuntar al rango alto: <strong>6 meses</strong>.</p>
+        <p>¿Por qué? Porque cualquier eventualidad — perder el trabajo, un tema migratorio, salud, una emergencia familiar que requiera viajar — cuesta más resolver lejos de casa.</p>
+      </div>
+
+      <h3>El asunto de las dos monedas</h3>
+      <p>Tienes ingresos en HUF (volátil, de uso diario) y en COP (volátil, en otra geografía). La pregunta de fondo es: <em>¿en qué moneda quieres pensar tu patrimonio a largo plazo?</em></p>
+
+      <p>Si tu vida futura es en Europa, el ancla mental probablemente debería ser EUR — no HUF. Esto significa que, a la hora de medir si estás avanzando, no basta con ver crecer el saldo en florines. Hay que mirarlo en euros.</p>
+
+      <div class="pull-quote">
+        El primer acto de organización financiera no es ahorrar. Es <em>medir</em>. Hasta que no sepas cuánto cuesta tu vida, todo lo demás es ruido.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 2 ====== -->
+<section class="section" id="s2">
+  <div class="section-head">
+    <div class="section-num">
+      <span class="ord">Módulo Dos</span>
+      II
+    </div>
+    <div>
+      <h2 class="section-title">El interés compuesto,<br>o por qué el tiempo gana.</h2>
+      <p class="section-subtitle">La fuerza más poderosa del universo financiero. <span class="en-tag">Compound interest</span></p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <p class="lead">El interés compuesto es ganar rendimiento sobre el rendimiento que ya ganaste. Suena trivial. No lo es.</p>
+
+      <p>El año uno inviertes 1.000 € y ganas 70 €. El año dos no rindes sobre 1.000 sino sobre 1.070. El año tres, sobre 1.144,90. La diferencia parece pequeña al principio, pero después de 20 o 30 años se vuelve dramática.</p>
+
+      <p><strong>Ejemplo:</strong> 200 €/mes durante 30 años a un retorno promedio del 7% anual rinde aproximadamente <em>244.000 €</em>. De esos, solo 72.000 € fueron tus aportes. Los otros 172.000 € son el regalo del tiempo.</p>
+
+      <h3>Calculadora — juega con tus números</h3>
+      <p>Mete tus propias cifras abajo. Los números cambian en tiempo real.</p>
+    </div>
+  </div>
+
+  <!-- COMPOUND CALCULATOR -->
+  <div class="calculator">
+    <div class="calc-header">
+      <div class="calc-title">Calculadora de <em>futuros posibles</em></div>
+      <div class="calc-tag">Compound Calculator</div>
+    </div>
+
+    <div class="calc-grid">
+      <div class="calc-inputs">
+        <div class="input-group">
+          <label>Aporte mensual <span class="en">/ Monthly contribution</span></label>
+          <div class="input-row">
+            <input type="range" id="monthly" min="50" max="2000" step="50" value="300">
+            <div class="input-value"><span id="monthlyVal">300</span><span class="unit">€</span></div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Aporte inicial <span class="en">/ Initial deposit</span></label>
+          <div class="input-row">
+            <input type="range" id="initial" min="0" max="50000" step="500" value="5000">
+            <div class="input-value"><span id="initialVal">5,000</span><span class="unit">€</span></div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Rendimiento anual esperado <span class="en">/ Expected annual return</span></label>
+          <div class="input-row">
+            <input type="range" id="rate" min="2" max="12" step="0.5" value="7">
+            <div class="input-value"><span id="rateVal">7</span><span class="unit">%</span></div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Horizonte <span class="en">/ Time horizon</span></label>
+          <div class="input-row">
+            <input type="range" id="years" min="1" max="40" step="1" value="25">
+            <div class="input-value"><span id="yearsVal">25</span><span class="unit">años</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="result-main"><span class="currency">€</span><span id="finalVal">0</span></div>
+        <div class="result-label">Valor estimado al final del horizonte</div>
+
+        <div class="result-breakdown">
+          <div class="result-row">
+            <span class="key">Total aportado <span style="opacity:0.6">/ contributed</span></span>
+            <span class="val" id="contributedVal">€0</span>
+          </div>
+          <div class="result-row gain">
+            <span class="key">Ganancia por interés <span style="opacity:0.6">/ compound gain</span></span>
+            <span class="val" id="gainVal">€0</span>
+          </div>
+        </div>
+
+        <div class="calc-chart">
+          <canvas id="compoundChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <div class="callout">
+        <div class="callout-label">La conclusión</div>
+        <p>El tiempo es la variable más poderosa, más que el monto. Empezar a los 28 con poco le gana a empezar a los 38 con mucho. La razón es que cada año de adelanto multiplica todos los años siguientes.</p>
+      </div>
+
+      <p>Una nota importante: el 7% no es magia ni promesa. Es una aproximación al retorno histórico de mercados de acciones diversificados a largo plazo, descontando inflación. Hay años de –20% y años de +25%. La cifra solo tiene sentido en horizontes largos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 3 ====== -->
+<section class="section" id="s3">
+  <div class="section-head">
+    <div class="section-num">
+      <span class="ord">Módulo Tres</span>
+      III
+    </div>
+    <div>
+      <h2 class="section-title">Renta fija vs.<br>renta variable.</h2>
+      <p class="section-subtitle">Y por qué los CDT colombianos son más complicados de lo que parecen. <span class="en-tag">Fixed vs. variable income</span></p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <p class="lead">Toda inversión cae en una de dos familias: prestar dinero o ser dueño de algo. Esa es, en esencia, la diferencia.</p>
+
+      <h3>Renta fija <span class="en-tag">Fixed income</span></h3>
+      <p>Le prestas dinero a alguien (un banco, un gobierno, una empresa) y te paga un interés conocido de antemano durante un plazo fijo. <strong>Riesgo bajo, retorno bajo y predecible.</strong> Ejemplos: CDT, bonos del Estado, cuentas remuneradas.</p>
+
+      <h3>Renta variable <span class="en-tag">Variable income / Equity</span></h3>
+      <p>Compras una participación en una empresa (acciones) o en una canasta de empresas (ETF). El retorno depende de cómo le vaya al negocio: si crece, ganas; si quiebra, pierdes. <strong>Mayor riesgo, mayor retorno potencial.</strong> En el largo plazo, históricamente, supera ampliamente a la renta fija.</p>
+
+      <h3>El caso particular: CDTs en Colombia</h3>
+      <p>Un CDT colombiano hoy puede ofrecer tasas nominales del 8–11% efectivo anual. Suena fantástico — hasta que vives en Budapest. Tres problemas:</p>
+
+      <ul>
+        <li><strong>Riesgo cambiario.</strong> Si el CDT te rinde 10% en COP pero el peso se devalúa 12% frente al euro ese año, perdiste poder adquisitivo en tu moneda real de uso.</li>
+        <li><strong>Inflación.</strong> El rendimiento <em>real</em> (descontando inflación) es lo que importa. Si la inflación está en 5%, un CDT al 10% rinde 5% real, no 10%.</li>
+        <li><strong>Complicaciones fiscales.</strong> Como residente fiscal en Hungría, tendrías que declarar esos rendimientos allá. La retención en la fuente en Colombia (4–7%) no te exime — solo se acredita parcialmente.</li>
+      </ul>
+
+      <p>Esto no significa que un CDT sea siempre mala idea. Para la porción de patrimonio en COP que no piensas mover a Europa (la renta familiar, por ejemplo), puede tener sentido para preservar y rentabilizar mientras decides qué hacer. Pero como <em>estrategia central</em> de inversión viviendo afuera, no funciona.</p>
+    </div>
+  </div>
+
+  <!-- CDT vs ETF COMPARATOR -->
+  <div class="comparator">
+    <div class="comp-header">
+      <div class="comp-title">Comparador: <em>CDT en COP vs. ETF en EUR</em></div>
+      <div class="calc-tag" style="color: var(--accent); border-color: var(--accent);">Real-Return Calculator</div>
+    </div>
+
+    <div class="versus">
+      <div class="vs-card left">
+        <div class="vs-card-header">Opción A</div>
+        <div class="vs-card-name">CDT Colombiano</div>
+        <div class="vs-card-currency">COP · Renta fija</div>
+        <div class="vs-stat"><span class="k">Tasa nominal anual</span><span class="v" id="cdtRateDisp">10.0%</span></div>
+        <div class="vs-stat"><span class="k">Inflación COP estimada</span><span class="v bad" id="cdtInflDisp">−5.5%</span></div>
+        <div class="vs-stat"><span class="k">Devaluación COP/EUR esperada</span><span class="v bad" id="cdtDevDisp">−4.0%</span></div>
+        <div class="vs-stat"><span class="k">Retención + impuesto HU</span><span class="v bad">~−15%</span></div>
+        <div class="vs-stat" style="margin-top:8px; padding-top:12px; border-top: 1px solid var(--ink);">
+          <span class="k"><strong>Retorno real en EUR</strong></span>
+          <span class="v" id="cdtNet" style="font-size: 22px;">—</span>
+        </div>
+      </div>
+
+      <div class="vs-divider">vs.</div>
+
+      <div class="vs-card right">
+        <div class="vs-card-header">Opción B</div>
+        <div class="vs-card-name">ETF global UCITS</div>
+        <div class="vs-card-currency">EUR · Renta variable</div>
+        <div class="vs-stat"><span class="k">Retorno histórico anualizado</span><span class="v" id="etfRateDisp">7.0%</span></div>
+        <div class="vs-stat"><span class="k">Inflación zona euro estimada</span><span class="v" id="etfInflDisp">−2.5%</span></div>
+        <div class="vs-stat"><span class="k">Riesgo cambiario</span><span class="v good">Ninguno</span></div>
+        <div class="vs-stat"><span class="k">TER (costo del fondo)</span><span class="v">~−0.20%</span></div>
+        <div class="vs-stat" style="margin-top:8px; padding-top:12px; border-top: 1px solid var(--ink);">
+          <span class="k"><strong>Retorno real en EUR</strong></span>
+          <span class="v good" id="etfNet" style="font-size: 22px;">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-controls">
+      <div class="comp-control">
+        <label>Tasa CDT (% EA)</label>
+        <div class="val-display"><span id="cdtRateVal">10.0</span>%</div>
+        <input type="range" id="cdtRate" min="6" max="14" step="0.5" value="10">
+      </div>
+      <div class="comp-control">
+        <label>Inflación COP (%)</label>
+        <div class="val-display"><span id="cdtInflVal">5.5</span>%</div>
+        <input type="range" id="cdtInfl" min="3" max="10" step="0.5" value="5.5">
+      </div>
+      <div class="comp-control">
+        <label>Devaluación COP/EUR (%)</label>
+        <div class="val-display"><span id="cdtDevVal">4.0</span>%</div>
+        <input type="range" id="cdtDev" min="-2" max="10" step="0.5" value="4">
+      </div>
+    </div>
+
+    <div class="comp-result">
+      <canvas id="compChart"></canvas>
+    </div>
+
+    <div class="comp-verdict" id="compVerdict">
+      Mueve los controles para ver cómo cambia el cálculo. <strong>Lo importante</strong> no es que el CDT sea malo — es que su rendimiento <em>real</em>, después de inflación y devaluación, suele ser mucho menor de lo que parece a primera vista cuando vives en otra moneda.
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 4 ====== -->
+<section class="section" id="s4">
+  <div class="section-head">
+    <div class="section-num">
+      <span class="ord">Módulo Cuatro</span>
+      IV
+    </div>
+    <div>
+      <h2 class="section-title">El mercado de acciones,<br>explicado sin misticismo.</h2>
+      <p class="section-subtitle">Qué es, por qué existe, por qué cualquiera puede entrar. <span class="en-tag">Stock market &amp; ETFs</span></p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <p class="lead">El mercado de acciones no es un casino ni una bola de cristal. Es un mecanismo bastante prosaico para conectar dos cosas: empresas que necesitan capital y personas que tienen ahorros.</p>
+
+      <h3>¿Qué es una acción? <span class="en-tag">Stock / Share</span></h3>
+      <p>Una participación pequeña en la propiedad de una empresa. Si compras una acción de Inditex, eres dueño — minúsculo, sí, pero dueño — de una fracción de Zara, Pull&amp;Bear, Bershka. Esa fracción te da derecho a una parte proporcional de las ganancias futuras.</p>
+
+      <h3>¿Por qué existe este mercado?</h3>
+      <p>Las empresas necesitan capital para crecer. Tienen dos formas de conseguirlo:</p>
+      <ul>
+        <li><strong>Pedir prestado</strong> (a un banco o emitiendo bonos). Pagas interés. Es deuda.</li>
+        <li><strong>Vender pedazos de sí mismas</strong> al público. No pagas interés, pero compartes las ganancias futuras. Es <em>equity</em>.</li>
+      </ul>
+      <p>El mercado de acciones es donde ocurre lo segundo. A cambio de su capital, los compradores reciben dos cosas potenciales: <strong>dividendos</strong> (parte de las ganancias repartidas en efectivo) y <strong>revalorización</strong> (que el precio de la acción suba).</p>
+
+      <h3>¿Por qué cualquier persona puede entrar?</h3>
+      <p>Históricamente no era así. Necesitabas un broker tradicional con comisiones altas, montos mínimos, y conocimiento de jerga. La digitalización cambió todo: hoy con apps como Interactive Brokers, Trade Republic o DEGIRO, con 100 € puedes tener exposición a 1.500 empresas globales en 5 minutos.</p>
+
+      <div class="pull-quote">
+        El fundamento filosófico del mercado de acciones es simple: a largo plazo, en agregado, las empresas crean valor. La economía global produce más cada año. Ser dueño de una porción de esa productividad es lo que captura un inversionista en índices amplios.
+      </div>
+
+      <h3>¿Qué es un ETF? <span class="en-tag">Exchange-Traded Fund</span></h3>
+      <p>Un fondo que cotiza en bolsa y que típicamente <em>replica un índice</em> (S&amp;P 500, MSCI World, etc.). En vez de comprar 500 acciones individuales — lo cual sería caro, complicado y propenso a errores — compras una sola participación que las contiene todas.</p>
+
+      <p>Es la innovación financiera más útil para un inversionista común de las últimas décadas. Te da:</p>
+      <ul>
+        <li><strong>Diversificación instantánea.</strong> Si una empresa quiebra, no importa: tienes 499 más.</li>
+        <li><strong>Costo bajísimo.</strong> Los ETFs de índice cobran 0,07–0,22% al año. Un fondo gestionado activamente cobra 1,5–2%.</li>
+        <li><strong>Simplicidad.</strong> No necesitas analizar empresa por empresa. Compras "el mercado".</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 5 ====== -->
+<section class="section" id="s5">
+  <div class="section-head">
+    <div class="section-num">
+      <span class="ord">Módulo Cinco</span>
+      V
+    </div>
+    <div>
+      <h2 class="section-title">Cómo elegir un ETF.<br>Acc, Dist, TER, domicilio.</h2>
+      <p class="section-subtitle">No todos los ETFs son iguales. Estos son los criterios. <span class="en-tag">ETF selection criteria</span></p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <p class="lead">Hay miles de ETFs disponibles. La buena noticia es que solo necesitas saber distinguir cinco cosas para elegir bien.</p>
+
+      <h3>Distributing vs. Accumulating <span class="en-tag">Dist vs. Acc</span></h3>
+      <p>Es la primera distinción que verás en cualquier ficha de ETF. Es importante.</p>
+    </div>
+  </div>
+
+  <!-- ACC vs DIST INTERACTIVE -->
+  <div class="acc-dist">
+    <div class="ad-toggle">
+      <button class="active" data-mode="both">Comparar ambos</button>
+      <button data-mode="acc">Solo Acc</button>
+      <button data-mode="dist">Solo Dist</button>
+    </div>
+
+    <div class="ad-chart">
+      <canvas id="adChart"></canvas>
+    </div>
+
+    <div class="ad-explanation">
+      <div class="ad-card">
+        <span class="tag">Distributing · Dist</span>
+        <h4>Te paga los dividendos en efectivo</h4>
+        <p>Cada cierto tiempo (trimestral, semestral) el fondo te transfiere los dividendos a tu cuenta. Útil si quieres ingresos pasivos hoy. Cada pago es un evento gravable: pagas impuesto sobre el dividendo recibido.</p>
+      </div>
+      <div class="ad-card">
+        <span class="tag">Accumulating · Acc</span>
+        <h4>Reinvierte automáticamente</h4>
+        <p>Los dividendos se quedan dentro del fondo y compran más participaciones. No recibes dinero en efectivo, pero el valor de tu participación crece más rápido. Pospones el evento gravable hasta que vendes — más eficiente fiscalmente para alguien acumulando patrimonio.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 32px;">
+      <div class="callout-label">Para tu caso</div>
+      <p>Joven, fase de acumulación, horizonte largo, residencia en Hungría: <strong>Accumulating, casi siempre.</strong> No necesitas el flujo de caja hoy, y el efecto fiscal compuesto trabaja a tu favor.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <h3>Los cinco indicadores a revisar</h3>
+      <table class="indicator-table">
+        <thead>
+          <tr>
+            <th>Indicador</th>
+            <th>Qué es</th>
+            <th>Qué buscar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TER<span class="en-small">Total Expense Ratio</span></td>
+            <td>Cuánto cobra el fondo al año por gestionar tu dinero. Se descuenta automáticamente.</td>
+            <td>Para ETFs de índice global: <strong>0.07%–0.22%</strong>. Más de 0.50% es caro.</td>
+          </tr>
+          <tr>
+            <td>Domicilio<span class="en-small">Fund domicile</span></td>
+            <td>País donde está legalmente registrado el fondo. Determina retenciones fiscales sobre dividendos.</td>
+            <td><strong>Irlanda</strong> es el estándar de oro en Europa. Luxemburgo es la segunda opción. <strong>Evita ETFs domiciliados en EE.UU.</strong></td>
+          </tr>
+          <tr>
+            <td>Tamaño<span class="en-small">AUM · Assets Under Management</span></td>
+            <td>Cuánto dinero gestiona el fondo en total.</td>
+            <td>Mejor por encima de <strong>100 millones de euros</strong>. Fondos pequeños pueden cerrar.</td>
+          </tr>
+          <tr>
+            <td>Réplica<span class="en-small">Physical vs. synthetic</span></td>
+            <td>Cómo el fondo "copia" el índice: comprando las acciones reales (física) o usando derivados (sintética).</td>
+            <td><strong>Réplica física</strong> para empezar: más simple, más transparente.</td>
+          </tr>
+          <tr>
+            <td>UCITS<span class="en-small">EU regulatory standard</span></td>
+            <td>Sello europeo de protección al inversionista minorista. Garantiza ciertos estándares de diversificación y transparencia.</td>
+            <td><strong>Siempre UCITS</strong> siendo residente europeo.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="callout-label">Ejemplos populares</div>
+        <p>Para ilustrar — no son recomendaciones, simplemente fondos de referencia que cumplen estos criterios:</p>
+        <p><strong>iShares Core MSCI World UCITS ETF (Acc)</strong> — TER 0.20%, domiciliado en Irlanda, réplica física, ~85 mil millones EUR. Es uno de los ETFs más usados en Europa para exposición a acciones globales.</p>
+        <p><strong>Vanguard FTSE All-World UCITS ETF (Acc)</strong> — TER 0.22%, Irlanda, incluye también mercados emergentes. Variante con mayor diversificación geográfica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SECTION 6 ====== -->
+<section class="section" id="s6">
+  <div class="section-head">
+    <div class="section-num">
+      <span class="ord">Módulo Seis</span>
+      VI
+    </div>
+    <div>
+      <h2 class="section-title">Empezar desde Budapest:<br>preguntas operativas.</h2>
+      <p class="section-subtitle">Lo que tienes que resolver antes de tu primera compra. <span class="en-tag">Operational checklist for HU residents</span></p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div></div>
+    <div class="body">
+      <p class="lead">Esta última sección es más una checklist que una clase. Son las preguntas que tienes que poder responder antes de meterle un solo euro al mercado.</p>
+
+      <p>Marca cada ítem cuando lo tengas resuelto — la lista guarda tu progreso.</p>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-header">
+      <span>Checklist · Pre-inversión desde Hungría</span>
+      <span><span id="checkedCount">0</span> / 6 completos</span>
+    </div>
+
+    <div class="check-item" data-id="broker">
+      <div class="check-box"></div>
+      <div class="check-content">
+        <div class="check-text">Elegir broker</div>
+        <div class="check-detail">Comparar <strong>Interactive Brokers</strong> (el más completo y robusto), <strong>Trade Republic</strong> (alemán, simple, opera en Hungría), <strong>DEGIRO</strong> (holandés), <strong>XTB</strong>. Comparar: comisiones por operación, custodia, conversión de divisa. <span class="en-inline">Compare brokers on fees, custody, FX conversion.</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-id="currency">
+      <div class="check-box"></div>
+      <div class="check-content">
+        <div class="check-text">Decidir moneda de la cuenta</div>
+        <div class="check-detail">Tu salario es en HUF, pero los ETFs UCITS típicamente cotizan en EUR o USD. Cada conversión cuesta entre 0.1% y 0.5% según el broker. En el largo plazo, esto importa. <span class="en-inline">Account currency &amp; FX conversion costs.</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-id="residency">
+      <div class="check-box"></div>
+      <div class="check-content">
+        <div class="check-text">Confirmar residencia fiscal</div>
+        <div class="check-detail">Si vives en Hungría más de 183 días al año, lo más probable es que seas residente fiscal allí. Esto define dónde declaras rendimientos y a qué tasas. <span class="en-inline">Confirm tax residency status (typically 183-day rule).</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-id="tbsz">
+      <div class="check-box"></div>
+      <div class="check-content">
+        <div class="check-text">Investigar la cuenta TBSZ</div>
+        <div class="check-detail"><strong>TBSZ</strong> (Tartós Befektetési Számla) es una cuenta de inversión a largo plazo en Hungría que ofrece exenciones fiscales sustanciales si mantienes la inversión 5 o más años. Es una de las mejores ventajas fiscales para inversionistas de largo plazo en la UE — vale la pena investigarla específicamente con un asesor local. <span class="en-inline">Hungarian long-term investment account with major tax benefits after 5 years.</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-id="taxes">
+      <div class="check-box"></div>
+      <div class="check-content">
+        <div class="check-text">Entender impuestos sobre ganancias de capital</div>
+        <div class="check-detail">Hungría aplica un impuesto sobre rendimientos del capital del <strong>15%</strong> más, en algunos casos, una contribución social adicional. Las reglas cambian — confirma con un contador local. <span class="en-inline">Capital gains tax: 15% baseline + possible social contribution.</span></div>
+      </div>
+    </div>
+
+    <div class="check-item" data-id="double-tax">
+      <div class="check-box"></div>
+      <div class="check-content">
+        <div class="check-text">Verificar convenio Hungría–Colombia</div>
+        <div class="check-detail">Existe un convenio de doble tributación entre los dos países. Importa especialmente para la renta del arriendo familiar y para entender obligaciones de reporte de activos extranjeros. <span class="en-inline">Hungary-Colombia double taxation treaty &amp; foreign asset reporting.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-grid" style="margin-top: 48px;">
+    <div></div>
+    <div class="body">
+      <div class="pull-quote">
+        El mejor momento para empezar a invertir fue hace diez años. El segundo mejor momento es esta semana — pero no antes de haber resuelto las seis cosas de arriba.
+        <span class="attribution">Proverbio modificado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="colophon">
+    Hecho en una tarde con cariño fraternal, café <span class="flourish">·</span> y la convicción de que entender el dinero es una forma de libertad.
+  </div>
+  <div class="meta">
+    Bogotá → Budapest · 2026 · Educación financiera, no asesoría
+  </div>
+</footer>
+
+<script>
+// ============ COMPOUND CALCULATOR ============
+const fmt = (n) => new Intl.NumberFormat('de-DE', { maximumFractionDigits: 0 }).format(Math.round(n));
+
+const inputs = {
+  monthly: document.getElementById('monthly'),
+  initial: document.getElementById('initial'),
+  rate: document.getElementById('rate'),
+  years: document.getElementById('years')
+};
+
+const displays = {
+  monthly: document.getElementById('monthlyVal'),
+  initial: document.getElementById('initialVal'),
+  rate: document.getElementById('rateVal'),
+  years: document.getElementById('yearsVal'),
+  final: document.getElementById('finalVal'),
+  contributed: document.getElementById('contributedVal'),
+  gain: document.getElementById('gainVal')
+};
+
+let compoundChart;
+
+function calculateCompound() {
+  const monthly = +inputs.monthly.value;
+  const initial = +inputs.initial.value;
+  const rate = +inputs.rate.value / 100;
+  const years = +inputs.years.value;
+
+  const monthlyRate = rate / 12;
+  const months = years * 12;
+
+  const labels = [];
+  const valueData = [];
+  const contributedData = [];
+
+  let balance = initial;
+  let totalContributed = initial;
+
+  for (let m = 0; m <= months; m++) {
+    if (m % 12 === 0) {
+      labels.push(`Año ${m / 12}`);
+      valueData.push(balance);
+      contributedData.push(totalContributed);
+    }
+    balance = balance * (1 + monthlyRate) + monthly;
+    totalContributed += monthly;
+  }
+
+  const finalValue = balance - monthly; // last iteration overshoots
+  const contributed = initial + monthly * months;
+  const gain = finalValue - contributed;
+
+  displays.monthly.textContent = fmt(monthly);
+  displays.initial.textContent = fmt(initial);
+  displays.rate.textContent = rate * 100;
+  displays.years.textContent = years;
+  displays.final.textContent = fmt(finalValue);
+  displays.contributed.textContent = '€' + fmt(contributed);
+  displays.gain.textContent = '€' + fmt(gain);
+
+  if (compoundChart) {
+    compoundChart.data.labels = labels;
+    compoundChart.data.datasets[0].data = valueData;
+    compoundChart.data.datasets[1].data = contributedData;
+    compoundChart.update('none');
+  }
+}
+
+function initCompoundChart() {
+  const ctx = document.getElementById('compoundChart');
+  compoundChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        {
+          label: 'Valor total',
+          data: [],
+          borderColor: '#d97757',
+          backgroundColor: 'rgba(217, 119, 87, 0.15)',
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 0
+        },
+        {
+          label: 'Aportado',
+          data: [],
+          borderColor: 'rgba(244, 235, 217, 0.6)',
+          backgroundColor: 'transparent',
+          fill: false,
+          tension: 0.3,
+          borderWidth: 1.5,
+          borderDash: [4, 4],
+          pointRadius: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a1611',
+          titleColor: '#f4ebd9',
+          bodyColor: '#f4ebd9',
+          borderColor: '#d97757',
+          borderWidth: 1,
+          callbacks: {
+            label: (c) => c.dataset.label + ': €' + fmt(c.parsed.y)
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: 'rgba(244, 235, 217, 0.5)', font: { family: 'JetBrains Mono', size: 9 }, maxRotation: 0, autoSkipPadding: 20 },
+          grid: { display: false }
+        },
+        y: {
+          ticks: {
+            color: 'rgba(244, 235, 217, 0.5)',
+            font: { family: 'JetBrains Mono', size: 9 },
+            callback: (v) => '€' + (v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v)
+          },
+          grid: { color: 'rgba(244, 235, 217, 0.08)' }
+        }
+      }
+    }
+  });
+}
+
+Object.values(inputs).forEach(input => {
+  input.addEventListener('input', calculateCompound);
+});
+
+// ============ CDT vs ETF COMPARATOR ============
+const compInputs = {
+  cdtRate: document.getElementById('cdtRate'),
+  cdtInfl: document.getElementById('cdtInfl'),
+  cdtDev: document.getElementById('cdtDev')
+};
+
+const compDisplays = {
+  cdtRate: document.getElementById('cdtRateVal'),
+  cdtInfl: document.getElementById('cdtInflVal'),
+  cdtDev: document.getElementById('cdtDevVal'),
+  cdtRateDisp: document.getElementById('cdtRateDisp'),
+  cdtInflDisp: document.getElementById('cdtInflDisp'),
+  cdtDevDisp: document.getElementById('cdtDevDisp'),
+  etfRateDisp: document.getElementById('etfRateDisp'),
+  etfInflDisp: document.getElementById('etfInflDisp'),
+  cdtNet: document.getElementById('cdtNet'),
+  etfNet: document.getElementById('etfNet'),
+  verdict: document.getElementById('compVerdict')
+};
+
+let compChart;
+
+function calculateComparison() {
+  const cdtRate = +compInputs.cdtRate.value;
+  const cdtInfl = +compInputs.cdtInfl.value;
+  const cdtDev = +compInputs.cdtDev.value;
+
+  // CDT: nominal - retention/HU tax (~15%) - inflation - devaluation
+  const cdtAfterTax = cdtRate * (1 - 0.15);
+  const cdtRealCOP = cdtAfterTax - cdtInfl;
+  const cdtRealEUR = cdtRealCOP - cdtDev;
+
+  // ETF: assume 7% return, 2.5% EUR inflation, 0.2% TER, ~15% capital gains tax (only when sold)
+  // For comparison fairness, show real return assuming long-term hold
+  const etfRate = 7.0;
+  const etfInfl = 2.5;
+  const etfReal = etfRate - etfInfl - 0.20;
+
+  compDisplays.cdtRate.textContent = cdtRate.toFixed(1);
+  compDisplays.cdtInfl.textContent = cdtInfl.toFixed(1);
+  compDisplays.cdtDev.textContent = cdtDev.toFixed(1);
+  compDisplays.cdtRateDisp.textContent = cdtRate.toFixed(1) + '%';
+  compDisplays.cdtInflDisp.textContent = '−' + cdtInfl.toFixed(1) + '%';
+  compDisplays.cdtDevDisp.textContent = (cdtDev >= 0 ? '−' : '+') + Math.abs(cdtDev).toFixed(1) + '%';
+  compDisplays.etfRateDisp.textContent = etfRate.toFixed(1) + '%';
+  compDisplays.etfInflDisp.textContent = '−' + etfInfl.toFixed(1) + '%';
+
+  compDisplays.cdtNet.textContent = (cdtRealEUR >= 0 ? '+' : '') + cdtRealEUR.toFixed(1) + '%';
+  compDisplays.cdtNet.className = 'v ' + (cdtRealEUR < etfReal ? 'bad' : 'good') + ' ';
+  compDisplays.cdtNet.style.fontSize = '22px';
+
+  compDisplays.etfNet.textContent = '+' + etfReal.toFixed(1) + '%';
+
+  // Update verdict
+  let verdictHtml = '';
+  if (cdtRealEUR >= etfReal) {
+    verdictHtml = `Bajo estos supuestos optimistas, el CDT supera al ETF. <strong>Pero ojo:</strong> esto asume que la devaluación COP/EUR sea baja y la inflación contenida — algo poco frecuente históricamente. La volatilidad de estos parámetros es justamente el problema: con un ETF en EUR, esos riesgos no existen.`;
+  } else if (cdtRealEUR < 0) {
+    verdictHtml = `Con estos parámetros, el CDT pierde poder adquisitivo en euros: <strong>${cdtRealEUR.toFixed(1)}% real</strong>. Aunque la tasa nominal del ${cdtRate}% suene atractiva, la combinación de inflación colombiana y devaluación frente al euro la come por completo. El ETF, en cambio, mantiene <strong>+${etfReal.toFixed(1)}% real</strong>.`;
+  } else {
+    verdictHtml = `El CDT rinde <strong>${cdtRealEUR.toFixed(1)}% real en EUR</strong> vs. <strong>${etfReal.toFixed(1)}%</strong> del ETF. La diferencia <em>también</em> incluye el riesgo: el CDT depende de variables (inflación COP, tipo de cambio) que están fuera de tu control y que pueden empeorar.`;
+  }
+  compDisplays.verdict.innerHTML = verdictHtml;
+
+  // Update chart - 10 year projection
+  if (compChart) {
+    const years = 10;
+    const cdtData = [];
+    const etfData = [];
+    let cdtVal = 100;
+    let etfVal = 100;
+    for (let i = 0; i <= years; i++) {
+      cdtData.push(cdtVal);
+      etfData.push(etfVal);
+      cdtVal *= (1 + cdtRealEUR / 100);
+      etfVal *= (1 + etfReal / 100);
+    }
+    compChart.data.datasets[0].data = cdtData;
+    compChart.data.datasets[1].data = etfData;
+    compChart.update('none');
+  }
+}
+
+function initCompChart() {
+  const ctx = document.getElementById('compChart');
+  compChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array.from({ length: 11 }, (_, i) => 'A' + i),
+      datasets: [
+        {
+          label: 'CDT (real EUR)',
+          data: [],
+          borderColor: '#a67c2d',
+          backgroundColor: 'rgba(166, 124, 45, 0.1)',
+          fill: false,
+          tension: 0.3,
+          borderWidth: 2.5,
+          pointRadius: 3,
+          pointBackgroundColor: '#a67c2d'
+        },
+        {
+          label: 'ETF global (real EUR)',
+          data: [],
+          borderColor: '#4a6b3a',
+          backgroundColor: 'rgba(74, 107, 58, 0.1)',
+          fill: false,
+          tension: 0.3,
+          borderWidth: 2.5,
+          pointRadius: 3,
+          pointBackgroundColor: '#4a6b3a'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          align: 'end',
+          labels: { font: { family: 'JetBrains Mono', size: 11 }, color: '#1a1611', boxWidth: 12 }
+        },
+        tooltip: {
+          callbacks: {
+            label: (c) => c.dataset.label + ': ' + c.parsed.y.toFixed(1)
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#6b5d47', font: { family: 'JetBrains Mono', size: 10 } },
+          grid: { display: false }
+        },
+        y: {
+          ticks: {
+            color: '#6b5d47',
+            font: { family: 'JetBrains Mono', size: 10 },
+            callback: (v) => v.toFixed(0)
+          },
+          grid: { color: 'rgba(212, 197, 163, 0.5)' },
+          title: { display: true, text: 'Valor (base 100)', font: { family: 'JetBrains Mono', size: 10 }, color: '#6b5d47' }
+        }
+      }
+    }
+  });
+}
+
+Object.values(compInputs).forEach(input => {
+  input.addEventListener('input', calculateComparison);
+});
+
+// ============ ACC vs DIST CHART ============
+let adChart;
+let adMode = 'both';
+
+function initAdChart() {
+  const ctx = document.getElementById('adChart');
+  const years = 30;
+  const monthly = 200;
+  const grossReturn = 0.07;
+  const dividendYield = 0.02;
+  const taxRate = 0.15;
+
+  const labels = [];
+  const accData = [];
+  const distData = [];
+
+  let accBalance = 0;
+  let distBalance = 0;
+  let distCashTaxed = 0;
+
+  for (let y = 0; y <= years; y++) {
+    labels.push(y);
+    accData.push(accBalance);
+    distData.push(distBalance + distCashTaxed);
+
+    if (y < years) {
+      // Acc: full reinvestment, no tax until sale
+      accBalance = (accBalance + monthly * 12) * (1 + grossReturn);
+
+      // Dist: dividends paid out and taxed each year
+      const priceReturn = grossReturn - dividendYield;
+      distBalance = (distBalance + monthly * 12) * (1 + priceReturn);
+      const dividendsThisYear = (distBalance + monthly * 12) * dividendYield;
+      distCashTaxed = distCashTaxed * (1 + 0.005) + dividendsThisYear * (1 - taxRate); // assume 0.5% on cash
+    }
+  }
+
+  adChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Accumulating · reinvierte',
+          data: accData,
+          borderColor: '#b54e2c',
+          backgroundColor: 'rgba(181, 78, 44, 0.12)',
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2.5,
+          pointRadius: 0
+        },
+        {
+          label: 'Distributing · paga dividendos',
+          data: distData,
+          borderColor: '#a67c2d',
+          backgroundColor: 'rgba(166, 124, 45, 0.08)',
+          fill: true,
+          tension: 0.3,
+          borderWidth: 2.5,
+          borderDash: [6, 4],
+          pointRadius: 0
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          align: 'end',
+          labels: { font: { family: 'JetBrains Mono', size: 11 }, color: '#1a1611', boxWidth: 14 }
+        },
+        tooltip: {
+          backgroundColor: '#1a1611',
+          titleColor: '#f4ebd9',
+          bodyColor: '#f4ebd9',
+          callbacks: {
+            title: (items) => 'Año ' + items[0].label,
+            label: (c) => c.dataset.label + ': €' + fmt(c.parsed.y)
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#6b5d47',
+            font: { family: 'JetBrains Mono', size: 10 },
+            callback: function(v, i) { return i % 5 === 0 ? 'Año ' + this.getLabelForValue(v) : ''; }
+          },
+          grid: { display: false }
+        },
+        y: {
+          ticks: {
+            color: '#6b5d47',
+            font: { family: 'JetBrains Mono', size: 10 },
+            callback: (v) => '€' + (v >= 1000 ? (v / 1000).toFixed(0) + 'k' : v)
+          },
+          grid: { color: 'rgba(212, 197, 163, 0.5)' }
+        }
+      }
+    }
+  });
+}
+
+document.querySelectorAll('.ad-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.ad-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    adMode = btn.dataset.mode;
+    if (adChart) {
+      adChart.data.datasets[0].hidden = (adMode === 'dist');
+      adChart.data.datasets[1].hidden = (adMode === 'acc');
+      adChart.update();
+    }
+  });
+});
+
+// ============ CHECKLIST ============
+const checkItems = document.querySelectorAll('.check-item');
+const checkedCountDisplay = document.getElementById('checkedCount');
+
+function updateCheckedCount() {
+  const count = document.querySelectorAll('.check-item.checked').length;
+  checkedCountDisplay.textContent = count;
+}
+
+checkItems.forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('checked');
+    updateCheckedCount();
+  });
+});
+
+// ============ INIT ============
+window.addEventListener('load', () => {
+  initCompoundChart();
+  calculateCompound();
+  initCompChart();
+  calculateComparison();
+  initAdChart();
+});
+</script>
+
+</body>
+</html>
